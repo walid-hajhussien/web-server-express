@@ -13,6 +13,9 @@ const app = express();
 // static file
 app.use(express.static(publicPath));
 
+// setup view engine
+app.set("view engine", "hbs");
+
 // about with html
 app.get("/about", (req, res) => {
   res.sendFile(publicPath + "/about.html");
