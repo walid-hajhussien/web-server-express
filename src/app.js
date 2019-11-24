@@ -20,7 +20,7 @@ app.set("views", viewsPath);
 hbs.registerPartials(partialsPath);
 
 // about with html
-app.get("/about", (req, res) => {
+app.get("/aboutStatic", (req, res) => {
   res.sendFile(publicPath + "/about.html");
 });
 
@@ -36,15 +36,30 @@ app.get("/dynamic", (req, res) => {
 // dnamic content
 app.get("/help", (req, res) => {
   res.render("help", {
-    title: "Dynamic Content Help",
+    title: "Help",
     name: "Welcome to the HBS Help",
     footer: "partials footer Help"
+  });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", {
+    title: " about",
+    name: "Welcome to the HBS About",
+    footer: "partials footer About"
   });
 });
 
 // weather with json
 app.get("/weather", (req, res) => {
   res.send({ name: "walid", age: 27 });
+});
+
+//404 not found
+app.get("/weather/*", (req, res) => {
+  res.render("404", {
+    name: "Weather"
+  });
 });
 
 app.get("*", (req, res) => {
