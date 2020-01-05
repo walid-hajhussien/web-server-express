@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         shell: {
             gitHub: {
-                command: ['git add .', 'git commit -m "update code"', 'git push origin master'].join('&&')
+                command: ['git add .', 'git commit -m "update code"', 'git push '].join('&&')
             }
         }
     })

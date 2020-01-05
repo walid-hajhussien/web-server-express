@@ -52,8 +52,18 @@ app.get("/about", (req, res) => {
   });
 });
 
-// weather with json
+//weather 
 app.get("/weather", (req, res) => {
+  res.render("weather", {
+    title: " weather",
+    name: "Welcome to the HBS weather",
+    footer: "partials footer weather"
+  });
+});
+
+
+// weather with json
+app.get("/forcast", (req, res) => {
   if (!req.query.address) {
     return res.send("no address provide!!!")
   }
