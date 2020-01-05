@@ -2,6 +2,8 @@ const path = require("path");
 const express = require("express");
 const chalk = require("chalk");
 const hbs = require("hbs");
+const Forecast = require("./utils/forecast");
+const Geocoding = require("./utils/Geocoding")
 
 // define path for express config
 const publicPath = path.join(__dirname, "../public");
@@ -52,7 +54,21 @@ app.get("/about", (req, res) => {
 
 // weather with json
 app.get("/weather", (req, res) => {
-  res.send({ name: "walid", age: 27 });
+  if (!req.query.address) {
+    return res.send("no address provide!!!")
+  }
+  const address = req.query.address;
+  Geocoding.getGeocoding(address)
+    .then((location) => {
+      return Forecast.getForecast(location.longitude, location.latitude)
+    })
+    .then((forcast) => {
+      res.send({ address: req.query.address, forcast: forcast });
+    })
+    .catch((error) => {
+      res.send({ error: error })
+    })
+
 });
 
 //404 not found
@@ -61,6 +77,14 @@ app.get("/weather/*", (req, res) => {
     name: "Weather"
   });
 });
+
+// products
+app.get("/products", (req, res) => {
+  queryString = req.query;
+  res.send({
+    prosucts: []
+  })
+})
 
 app.get("*", (req, res) => {
   res.redirect("/");
