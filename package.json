@@ -17,7 +17,8 @@
     "grunt": "^1.0.4",
     "grunt-shell": "^3.0.1",
     "hbs": "^4.0.6",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "nodemon": "^1.19.4"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
