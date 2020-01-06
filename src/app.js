@@ -3,7 +3,8 @@ const express = require("express");
 const chalk = require("chalk");
 const hbs = require("hbs");
 const Forecast = require("./utils/forecast");
-const Geocoding = require("./utils/Geocoding")
+const Geocoding = require("./utils/Geocoding");
+const port = process.env.PORT || 3000;
 
 // define path for express config
 const publicPath = path.join(__dirname, "../public");
@@ -102,6 +103,6 @@ app.get("*", (req, res) => {
 });
 
 // start the server
-app.listen(3000, () => {
-  console.log(chalk.green("server start at port 3000"));
+app.listen(port, () => {
+  console.log(chalk.green("server start at port " + port));
 });

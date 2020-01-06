@@ -6,7 +6,7 @@ module.exports = function (grunt) {
                 command: ['git add .', 'git commit -m "update code"', 'git push '].join('&&')
             },
             heroku: {
-                command: ['git add .', 'git commit -m "update code"', 'git push '].join('&&')
+                command: ['git push heroku master'].join('')
             }
         }
     })
@@ -19,6 +19,6 @@ module.exports = function (grunt) {
     grunt.registerTask("deployGit", ["shell:gitHub"]);
 
     // deploy to heroku
-    grunt.registerTask("deployGit", ["shell:heroku"]);
+    grunt.registerTask("deployHeroku", ["shell:heroku"]);
 
 }
