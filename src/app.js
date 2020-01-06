@@ -65,19 +65,24 @@ app.get("/weather", (req, res) => {
 
 // weather with json
 app.get("/forcast", (req, res) => {
+  let home = '';
   if (!req.query.address) {
 
     return res.send({ error: "no address provide!!!" })
   }
   const address = req.query.address;
+
   Geocoding.getGeocoding(address)
     .then((location) => {
+      home = location.location
       return Forecast.getForecast(location.longitude, location.latitude)
     })
     .then((forcast) => {
-      res.send({ address: req.query.address, forcast: forcast });
+
+      res.send({ address: home, forcast: forcast });
     })
     .catch((error) => {
+
       res.send({ error: error })
     })
 
