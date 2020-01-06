@@ -6,7 +6,7 @@ module.exports = function (grunt) {
                 command: ['git add .', 'git commit -m "update code"', 'git push '].join('&&')
             },
             heroku: {
-                command: ['git push heroku master'].join('')
+                command: ['git push heroku dynamic:master'].join('')
             }
         }
     })
