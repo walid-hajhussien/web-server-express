@@ -65,7 +65,8 @@ app.get("/weather", (req, res) => {
 // weather with json
 app.get("/forcast", (req, res) => {
   if (!req.query.address) {
-    return res.send("no address provide!!!")
+
+    return res.send({ error: "no address provide!!!" })
   }
   const address = req.query.address;
   Geocoding.getGeocoding(address)
